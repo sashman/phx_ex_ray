@@ -33,7 +33,6 @@ defmodule PhxExRay.MixProject do
   defp deps do
     [
       {:ex_doc, ">= 0.0.0", only: :dev},
-      { :uuid, "~> 1.1" },
       {:ex_ray , "~> 0.1"}
     ]
   end

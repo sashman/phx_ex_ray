@@ -48,23 +48,23 @@ defmodule PhxExRay.Span do
     quote do
       use ExRay, pre: :start_span, post: :end_span
 
-      defp request_id(ctx) do
+      defp request_id() do
         case Process.get(:request_id) do
-          nil -> UUID.uuid1()
+          nil -> "request_id_missing"
           request_id -> request_id
         end
       end
 
       defp start_span(ctx) do
         ctx.target
-        |> Span.open(request_id(ctx))
+        |> Span.open(request_id())
         |> :otter.tag(:component, "database")
         |> :otter.tag(:query, ctx.meta[:query])
         |> :otter.log(log_query_string(ctx.meta))
       end
 
       defp end_span(ctx, p_span, _ret) do
-        p_span |> Span.close(request_id(ctx))
+        p_span |> Span.close(request_id())
       end
 
       defp log_query_string([_, kind: kind, queryable: queryable]) do
