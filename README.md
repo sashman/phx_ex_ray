@@ -2,6 +2,8 @@
 
 > _The first x is silent_
 
+[![Hex.pm](https://img.shields.io/hexpm/v/phx_ex_ray.svg)](https://hex.pm/packages/phx_ex_ray)
+
 Wrapper around [ex_ray](https://github.com/derailed/ex_ray) for OpenTrace in Elixir Phoenix. Initial implementation based on the [ex_ray_tracers](https://github.com/derailed/ex_ray_tracers) example.
 
 ## Installation
