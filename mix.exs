@@ -4,7 +4,7 @@ defmodule PhxExRay.MixProject do
   def project do
     [
       app: :phx_ex_ray,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -33,6 +33,7 @@ defmodule PhxExRay.MixProject do
   defp deps do
     [
       {:ex_doc, ">= 0.0.0", only: :dev},
+      { :uuid, "~> 1.1" },
       {:ex_ray , "~> 0.1"}
     ]
   end

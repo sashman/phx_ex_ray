@@ -50,7 +50,7 @@ defmodule PhxExRay.Span do
 
       defp request_id(ctx) do
         case Process.get(:request_id) do
-          nil -> ctx.args |> List.first
+          nil -> UUID.uuid1()
           request_id -> request_id
         end
       end
