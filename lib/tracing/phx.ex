@@ -38,10 +38,18 @@ defmodule PhxExRay.Tracing.Phx do
   """
   @spec request_id(Plug.Conn.t) :: number
   def request_id(conn) do
-    conn.resp_headers
+    case Process.get(:request_id) do
+      nil -> request_id_from_conn(conn)
+      request_id -> request_id
+    end
+  end
+
+  defp request_id_from_conn(conn) do
+    conn.req_headers
+    |> IO.inspect
     |> Enum.filter(fn
-      ({"x-request-id", _}) -> true
-      ({_, _})              -> false
+      ({"x-b3-parentspanid", _}) -> true
+      ({_, _})             -> false
     end)
     |> List.first
     |> (fn({_, req_id}) -> req_id end).()
